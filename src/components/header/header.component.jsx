@@ -1,19 +1,21 @@
 import React from "react";
 
+import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-// import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
+
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 
-import "./header.styles.css";
-// import { SidebarData } from "./sideBarData";
+import { ListItem, ListItemText, SwipeableDrawer } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,26 +84,90 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  list: {
+    width: 250,
+    margin: "40px",
+  },
+  fullList: {
+    width: "auto",
+  },
 }));
 
 export default function SearchAppBar() {
   const classes = useStyles();
 
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === "top" || anchor === "bottom",
+      })}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {["Home", "Contacts", "Sign In"].map((text) => (
+          <ListItem button key={text}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+    </div>
+  );
+
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed" style={{ backgroundColor: "#000099" }}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+          <div>
+            {["left"].map((anchor) => (
+              <React.Fragment key={anchor}>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={toggleDrawer(anchor, true)}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <SwipeableDrawer
+                  anchor={anchor}
+                  open={state[anchor]}
+                  onClose={toggleDrawer(anchor, false)}
+                  onOpen={toggleDrawer(anchor, true)}
+                  style={{ backgroundColor: "#00004C" }}
+                >
+                  {list(anchor)}
+                </SwipeableDrawer>
+              </React.Fragment>
+            ))}
+          </div>
+
           <div className={classes.logo}>
             <Logo />
           </div>
+
           <div className={classes.label}>
             <h6>Home</h6>
           </div>
@@ -114,6 +180,7 @@ export default function SearchAppBar() {
           <div className={classes.label}>
             <h6>Sign In</h6>
           </div>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
