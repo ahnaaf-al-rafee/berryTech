@@ -19,7 +19,7 @@ import { ListItem, ListItemText, SwipeableDrawer } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   label: {
     // flexGrow: 1,
@@ -137,7 +137,7 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" style={{ backgroundColor: "#000099" }}>
+      <AppBar position="static" style={{ backgroundColor: "#000099" }}>
         <Toolbar>
           <div>
             {["left"].map((anchor) => (
