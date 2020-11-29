@@ -137,7 +137,10 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: "#000099" }}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: "#00003f", height: "80px" }}
+      >
         <Toolbar>
           <div>
             {["left"].map((anchor) => (
