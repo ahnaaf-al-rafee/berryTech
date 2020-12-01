@@ -2,16 +2,21 @@
   width: 22vh;
   display: flex;
   flex-direction: column;
+  /* overflow-y: hidden;
+  overflow-x: scroll; */
   height: 350px;
   align-items: center;
   position: relative;
+  margin-right: 30px;
+  /* padding: 10px; */
 }
 .collection-item .image {
   width: 100%;
   height: 95%;
   background-size: cover;
   background-position: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  object-fit: contain;
 }
 .collection-item .custom-button {
   width: 80%;
