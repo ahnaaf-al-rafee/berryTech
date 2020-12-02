@@ -7,7 +7,6 @@ import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 
-import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -15,7 +14,8 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 
-import { ListItem, ListItemText, SwipeableDrawer } from "@material-ui/core";
+import { SwipeableDrawer } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,14 +23,29 @@ const useStyles = makeStyles((theme) => ({
   },
   label: {
     // flexGrow: 1,
+    color: "white",
+    textDecoration: "none",
     marginLeft: "30px",
     marginRight: "30px",
-    fontSize: "1.5rem",
+    fontSize: "1.2rem",
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
   },
+  labelSide: {
+    color: "black",
+    textDecoration: "none",
+    fontSize: "1.2rem",
+    fontWeight: "900",
+    padding: "10px",
+  },
+
+  listing: {
+    fontSize: "1.2rem",
+    listStyleType: "none",
+  },
+
   menuButton: {
     marginRight: theme.spacing(2),
     display: "none",
@@ -124,13 +139,20 @@ export default function SearchAppBar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {["Home", "Contacts", "Sign In"].map((text) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <ul className={classes.listing}>
+        <Link to="/">
+          <li className={classes.labelSide}>Home</li>
+        </Link>
+        <Link to="/shop">
+          <li className={classes.labelSide}>Shop</li>
+        </Link>
+        <Link to="/contact">
+          <li className={classes.labelSide}>Contact</li>
+        </Link>
+        <Link to="/signin">
+          <li className={classes.labelSide}>Sign In</li>
+        </Link>
+      </ul>
       <Divider />
     </div>
   );
@@ -171,18 +193,26 @@ export default function SearchAppBar() {
             <Logo />
           </div>
 
-          <div className={classes.label}>
-            <h6>Home</h6>
-          </div>
-          <div className={classes.label}>
-            <h6>Shop</h6>
-          </div>
-          <div className={classes.label}>
-            <h6>Contact</h6>
-          </div>
-          <div className={classes.label}>
-            <h6>Sign In</h6>
-          </div>
+          <Link to="/">
+            <div className={classes.label}>
+              <h6>Home</h6>
+            </div>
+          </Link>
+          <Link to="/shop">
+            <div className={classes.label}>
+              <h6>Shop</h6>
+            </div>
+          </Link>
+          <Link to="/contact">
+            <div className={classes.label}>
+              <h6>Contact</h6>
+            </div>
+          </Link>
+          <Link to="/signin">
+            <div className={classes.label}>
+              <h6>Sign In</h6>
+            </div>
+          </Link>
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
