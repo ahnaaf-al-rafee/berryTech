@@ -11,14 +11,27 @@ class ShopPage extends React.Component {
 
     this.state = {
       collections: SHOP_DATA,
+      searchField: "",
     };
   }
+  handleChange = (event) => {
+    this.setState({ searchField: event.target.value });
+  };
 
   render() {
-    const { collections } = this.state;
+    const { collections, searchField } = this.state;
+
+    const filteredData = collections.filter((collection) =>
+      collection.title.toUpperCase().includes(searchField.toLocaleUpperCase())
+    );
     return (
       <div className="shop-page">
-        {collections.map(({ id, ...otherProps }) => (
+        <input
+          type="search"
+          placeholder="search products"
+          onChange={this.handleChange}
+        />
+        {filteredData.map(({ id, ...otherProps }) => (
           <CollectionPreview key={id} {...otherProps} />
         ))}
       </div>
