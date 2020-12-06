@@ -219,8 +219,11 @@ export default function SearchAppBar({ currentUser }) {
             </div>
           </Link>
           {currentUser ? (
-            <div className={classes.label} onClick={() => auth.signOut()}>
-              <h6>Sign Out</h6>
+            <div>
+              <h6>Welcome {currentUser.displayName}</h6>
+              <div className={classes.label} onClick={() => auth.signOut()}>
+                <h6>Sign Out</h6>
+              </div>
             </div>
           ) : (
             <Link to="/signin">
