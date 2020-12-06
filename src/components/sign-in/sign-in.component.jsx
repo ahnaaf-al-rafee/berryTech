@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  SignInWithFacebook,
+  SignInWithGithub,
+  SignInWithGoogle,
+} from "../../firebase/firebase.utis";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
 
@@ -48,6 +53,15 @@ class SignIn extends React.Component {
             label="password"
           />
           <CustomButton type="submit">Sign In</CustomButton>
+          <CustomButton onClick={SignInWithGoogle}>
+            Sign In With Google
+          </CustomButton>
+          <CustomButton onClick={SignInWithFacebook}>
+            Sign In With Facebook
+          </CustomButton>
+          <CustomButton onClick={SignInWithGithub}>
+            Sign In With Github
+          </CustomButton>
         </form>
       </div>
     );
