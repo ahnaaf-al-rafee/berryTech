@@ -3,6 +3,7 @@ import {
   SignInWithFacebook,
   SignInWithGithub,
   SignInWithGoogle,
+  SignInWithTwitter,
 } from "../../firebase/firebase.utis";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
@@ -61,6 +62,9 @@ class SignIn extends React.Component {
           </CustomButton>
           <CustomButton onClick={SignInWithGithub}>
             Sign In With Github
+          </CustomButton>
+          <CustomButton onClick={SignInWithTwitter}>
+            Sign In With Twitter
           </CustomButton>
         </form>
       </div>

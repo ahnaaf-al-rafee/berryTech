@@ -39,4 +39,11 @@ gProvider.setCustomParameters({
 });
 export const SignInWithGithub = () => auth.signInWithPopup(gProvider);
 
+// Twitter Authentication 👇
+const tProvider = new firebase.auth.TwitterAuthProvider();
+tProvider.setCustomParameters({
+  prompt: "select_account",
+});
+export const SignInWithTwitter = () => auth.signInWithPopup(tProvider);
+
 export default firebase;
