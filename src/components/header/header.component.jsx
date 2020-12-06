@@ -16,6 +16,7 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 import { SwipeableDrawer } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/firebase.utis";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   label: {
     // flexGrow: 1,
+    cursor: "pointer",
     color: "white",
     textDecoration: "none",
     marginLeft: "30px",
@@ -108,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ currentUser }) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -149,9 +151,17 @@ export default function SearchAppBar() {
         <Link to="/contact">
           <li className={classes.labelSide}>Contact</li>
         </Link>
-        <Link to="/signin">
-          <li className={classes.labelSide}>Sign In</li>
-        </Link>
+        {currentUser ? (
+          <div className={classes.labelSide} onClick={() => auth.signOut()}>
+            <h6>Sign Out</h6>
+          </div>
+        ) : (
+          <Link to="/signin">
+            <div className={classes.labelSide}>
+              <h6>Sign In</h6>
+            </div>
+          </Link>
+        )}
       </ul>
       <Divider />
     </div>
@@ -208,11 +218,17 @@ export default function SearchAppBar() {
               <h6>Contact</h6>
             </div>
           </Link>
-          <Link to="/signin">
-            <div className={classes.label}>
-              <h6>Sign In</h6>
+          {currentUser ? (
+            <div className={classes.label} onClick={() => auth.signOut()}>
+              <h6>Sign Out</h6>
             </div>
-          </Link>
+          ) : (
+            <Link to="/signin">
+              <div className={classes.label}>
+                <h6>Sign In</h6>
+              </div>
+            </Link>
+          )}
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
