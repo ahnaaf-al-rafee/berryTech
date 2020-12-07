@@ -1,12 +1,20 @@
 import React from "react";
+
 import {
   SignInWithFacebook,
   SignInWithGithub,
   SignInWithGoogle,
   SignInWithTwitter,
 } from "../../firebase/firebase.utis";
+
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
+
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import GitHubIcon from "@material-ui/icons/GitHub";
+
+import { GrGoogle } from "react-icons/gr";
 
 import "./sign-in.styles.css";
 
@@ -30,8 +38,12 @@ class SignIn extends React.Component {
     };
     return (
       <div className="sign-in">
-        <h1>I already have an account</h1>
-        <span>Sign in with your email and password</span>
+        <div>
+          <h1 style={{ textAlign: "center" }}>I already have an account</h1>
+          <h4 style={{ textAlign: "center" }}>
+            Sign in with your email and password
+          </h4>
+        </div>
         <form onSubmit={handleSubmit}>
           <FormInput
             name="email"
@@ -54,17 +66,32 @@ class SignIn extends React.Component {
             label="password"
           />
           <CustomButton type="submit">Sign In</CustomButton>
-          <CustomButton onClick={SignInWithGoogle}>
-            Sign In With Google
+          <br />
+          <h4 style={{ textAlign: "center" }}>Or</h4>
+          <hr />
+          <br />
+          <CustomButton onClick={SignInWithGoogle} isGoogle>
+            <div>
+              <GrGoogle />
+              Sign In With Google
+            </div>
           </CustomButton>
-          <CustomButton onClick={SignInWithFacebook}>
-            Sign In With Facebook
+          <CustomButton onClick={SignInWithFacebook} isFacebook>
+            <div>
+              <FacebookIcon /> Sign In With Facebook
+            </div>
           </CustomButton>
-          <CustomButton onClick={SignInWithGithub}>
-            Sign In With Github
+          <CustomButton onClick={SignInWithTwitter} isTwitter>
+            <div>
+              <TwitterIcon />
+              Sign In With Twitter
+            </div>
           </CustomButton>
-          <CustomButton onClick={SignInWithTwitter}>
-            Sign In With Twitter
+          <CustomButton onClick={SignInWithGithub} isGithub>
+            <div>
+              <GitHubIcon />
+              Sign In With Github
+            </div>
           </CustomButton>
         </form>
       </div>

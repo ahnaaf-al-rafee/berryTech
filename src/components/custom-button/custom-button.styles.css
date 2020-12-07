@@ -22,12 +22,30 @@
   color: black;
   border: 1px solid black;
 }
-.custom-button.google-sign-in {
-  background-color: #4285f4;
+.custom-button.google-button {
+  background-color: #DD4832;
   color: white;
 }
-.custom-button.google-sign-in:hover {
-  background-color: #357ae8;
+.custom-button.google-button:hover {
+  background-color: #dd4932cc;
+  border: none;
+}
+
+.custom-button.facebook-button {
+  background-color: #3B5999;
+  color: white;
+}
+.custom-button.facebook-button:hover {
+  background-color: #3b5999d0;
+  border: none;
+}
+
+.custom-button.twitter-button {
+  background-color: #0853f5;
+  color: white;
+}
+.custom-button.facebook-button:hover {
+  background-color: #0853f596;
   border: none;
 }
 .custom-button.inverted {
