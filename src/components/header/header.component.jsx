@@ -208,6 +208,21 @@ export default function SearchAppBar({ currentUser }) {
               </div>
             </Link>
           )}
+
+          {currentUser ? (
+            <div>
+              <img
+                style={{
+                  float: "right",
+                  borderRadius: "100px",
+                  height: "60%",
+                  width: "60%",
+                }}
+                src={currentUser.photoURL}
+                alt=""
+              />
+            </div>
+          ) : null}
         </Toolbar>
       </AppBar>
     </div>
