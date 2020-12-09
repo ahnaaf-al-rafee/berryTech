@@ -18,32 +18,18 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-// Google authentication 👇
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({
-  prompt: "select_account",
-});
-export const SignInWithGoogle = () => auth.signInWithPopup(provider);
-
-// Facebook Authentication 👇
-const fbProvider = new firebase.auth.FacebookAuthProvider();
-fbProvider.setCustomParameters({
-  prompt: "select_account",
-});
-export const SignInWithFacebook = () => auth.signInWithPopup(fbProvider);
-
-// Github Authentication 👇
-const gProvider = new firebase.auth.GithubAuthProvider();
-gProvider.setCustomParameters({
-  prompt: "select_account",
-});
-export const SignInWithGithub = () => auth.signInWithPopup(gProvider);
-
-// Twitter Authentication 👇
-const tProvider = new firebase.auth.TwitterAuthProvider();
-tProvider.setCustomParameters({
-  prompt: "select_account",
-});
-export const SignInWithTwitter = () => auth.signInWithPopup(tProvider);
+export const uiConfig = {
+  signInFlow: "popup",
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+  ],
+  callbacks: {
+    signInSuccess: () => false,
+  },
+};
 
 export default firebase;

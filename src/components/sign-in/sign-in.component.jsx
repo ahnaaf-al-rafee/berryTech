@@ -1,20 +1,9 @@
 import React from "react";
+import { StyledFirebaseAuth } from "react-firebaseui";
 
-import {
-  SignInWithFacebook,
-  SignInWithGithub,
-  SignInWithGoogle,
-  SignInWithTwitter,
-} from "../../firebase/firebase.utis";
+import { auth, uiConfig } from "../../firebase/firebase.utis";
 
-import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-
-import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import GitHubIcon from "@material-ui/icons/GitHub";
-
-import { GrGoogle } from "react-icons/gr";
 
 import "./sign-in.styles.css";
 
@@ -65,35 +54,11 @@ class SignIn extends React.Component {
             }
             label="password"
           />
-          <CustomButton type="submit">Sign In</CustomButton>
-          <br />
-          <h4 style={{ textAlign: "center" }}>Or</h4>
-          <hr />
-          <br />
-          <CustomButton onClick={SignInWithGoogle} isGoogle>
-            <div>
-              <GrGoogle />
-              Sign In With Google
-            </div>
-          </CustomButton>
-          <CustomButton onClick={SignInWithFacebook} isFacebook>
-            <div>
-              <FacebookIcon /> Sign In With Facebook
-            </div>
-          </CustomButton>
-          <CustomButton onClick={SignInWithTwitter} isTwitter>
-            <div>
-              <TwitterIcon />
-              Sign In With Twitter
-            </div>
-          </CustomButton>
-          <CustomButton onClick={SignInWithGithub} isGithub>
-            <div>
-              <GitHubIcon />
-              Sign In With Github
-            </div>
-          </CustomButton>
         </form>
+
+        <h4 style={{ textAlign: "center" }}>Or</h4>
+        <br />
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     );
   }
