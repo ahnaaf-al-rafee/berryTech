@@ -32,4 +32,34 @@ export const uiConfig = {
   },
 };
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`); //gets the user by his UID
+
+  const snapshot = await userRef.get(); //.get() means snapshot object stores the data of the user
+
+  //there is a exist property in the userRef.get()
+  // which illustrates if the user is present in the database or not
+  // if the user is not in the data base -> !snapshot.exist then
+  // we will store the user data in firestore👇
+  if (!snapshot.exists) {
+    const { displayName, email, photoURL } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        photoURL,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("error creating user-->", error);
+    }
+  }
+  return userRef;
+};
+
 export default firebase;

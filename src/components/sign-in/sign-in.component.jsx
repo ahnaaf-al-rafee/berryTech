@@ -54,11 +54,10 @@ class SignIn extends React.Component {
             }
             label="password"
           />
+          <h4 style={{ textAlign: "center" }}>Or</h4>
+          <br />
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
         </form>
-
-        <h4 style={{ textAlign: "center" }}>Or</h4>
-        <br />
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     );
   }
