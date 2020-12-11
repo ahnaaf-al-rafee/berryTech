@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar({ currentUser }) {
+export default function Header({ currentUser }) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -167,7 +167,6 @@ export default function SearchAppBar({ currentUser }) {
                   open={state[anchor]}
                   onClose={toggleDrawer(anchor, false)}
                   onOpen={toggleDrawer(anchor, true)}
-                  style={{ backgroundColor: "#00004C" }}
                 >
                   {list(anchor)}
                 </SwipeableDrawer>
@@ -215,8 +214,8 @@ export default function SearchAppBar({ currentUser }) {
                 style={{
                   float: "right",
                   borderRadius: "100px",
-                  height: "60%",
-                  width: "60%",
+                  height: "450%",
+                  width: "45%",
                 }}
                 src={currentUser.photoURL}
                 alt=""

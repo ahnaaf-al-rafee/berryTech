@@ -2,6 +2,7 @@ import React from "react";
 import { StyledFirebaseAuth } from "react-firebaseui";
 
 import { auth, uiConfig } from "../../firebase/firebase.utis";
+import CustomButton from "../custom-button/custom-button.component";
 
 import FormInput from "../form-input/form-input.component";
 
@@ -16,15 +17,23 @@ class SignIn extends React.Component {
       password: "",
     };
   }
-  render() {
-    const handleSubmit = (event) => {
-      event.preventDefault();
 
+  handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
       this.setState({
         email: "",
         password: "",
       });
-    };
+    } catch (error) {
+      alert(error);
+    }
+  };
+  render() {
     return (
       <div className="sign-in">
         <div>
@@ -33,7 +42,7 @@ class SignIn extends React.Component {
             Sign in with your email and password
           </h4>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <FormInput
             name="email"
             type="email"
@@ -54,10 +63,12 @@ class SignIn extends React.Component {
             }
             label="password"
           />
-          <h4 style={{ textAlign: "center" }}>Or</h4>
-          <br />
-          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+          <CustomButton type="submit">Sign In</CustomButton>
         </form>
+        <br />
+        <h4 style={{ textAlign: "center" }}>Or</h4>
+        <br />
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     );
   }
