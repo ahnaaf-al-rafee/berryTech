@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledFirebaseAuth } from "react-firebaseui";
 
-import { auth, uiConfig } from "../../firebase/firebase.utis";
+import { auth, uiConfig } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
 
 import FormInput from "../form-input/form-input.component";

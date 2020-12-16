@@ -14,7 +14,7 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 import { SwipeableDrawer } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { auth } from "../../firebase/firebase.utis";
+import { auth } from "../../firebase/firebase.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -124,8 +124,8 @@ export default function Header({ currentUser }) {
         <Link to="/shop">
           <li className={classes.labelSide}>Shop</li>
         </Link>
-        <Link to="/contact">
-          <li className={classes.labelSide}>Contact</li>
+        <Link to="/blog">
+          <li className={classes.labelSide}>Blog</li>
         </Link>
         {currentUser ? (
           <div className={classes.labelSide} onClick={() => auth.signOut()}>
@@ -188,9 +188,9 @@ export default function Header({ currentUser }) {
               <h6>Shop</h6>
             </div>
           </Link>
-          <Link to="/contact">
+          <Link to="/blog">
             <div className={classes.label}>
-              <h6>Contact</h6>
+              <h6>Blog</h6>
             </div>
           </Link>
           {currentUser ? (
