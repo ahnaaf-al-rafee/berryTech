@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import "./App.css";
 
@@ -55,7 +55,13 @@ class App extends React.Component {
           <Route exact path="/shop" component={ShopPage} />
           <Route exact path="/blog" component={AllPosts} />
           <Route path="/blog/:slug" component={SinglePost} />
-          <Route exact path="/signin" component={SignInAndSignUp} />
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              this.state.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
+            }
+          />
         </Switch>
       </div>
     );
