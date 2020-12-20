@@ -7,6 +7,7 @@ import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
 
 import "./singlePost.styles.css";
+import Loading from "../../loading/Loading";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -38,7 +39,12 @@ export default function SinglePost() {
       .catch(console.error);
   }, [slug]);
 
-  if (!postData) return <div className="loader"></div>;
+  if (!postData)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="min-h-screen p-12">

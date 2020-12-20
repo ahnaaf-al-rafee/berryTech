@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./allPost.styles.css";
 
 import sanityClient from "../../../client";
+import Loading from "../../loading/Loading";
 
 export default function AllPosts() {
   const [allPostsData, setAllPostsData] = useState(null);
@@ -26,7 +27,12 @@ export default function AllPosts() {
       .catch(console.error);
   }, []);
 
-  if (!allPostsData) return <div className="loader"></div>;
+  if (!allPostsData)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
 
   console.log(allPostsData);
 
