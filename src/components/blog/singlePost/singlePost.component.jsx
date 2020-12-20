@@ -6,8 +6,7 @@ import sanityClient from "../../../client";
 import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
 
-import "./singlePost.styles.css";
-import Loading from "../../loading/Loading";
+import Loading from "../../loading/loading";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {

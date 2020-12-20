@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./allPost.styles.css";
 
 import sanityClient from "../../../client";
-import Loading from "../../loading/Loading";
+import Loading from "../../loading/loading"
 
 export default function AllPosts() {
   const [allPostsData, setAllPostsData] = useState(null);

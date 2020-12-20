@@ -171,14 +171,14 @@
     opacity: 1;
   }
 }
-body {
-  -webkit-box-align: center;
-  align-items: center;
-  background-color: #fafafa;
-  display: -webkit-box;
-  display: flex;
-  height: 100vh;
-  -webkit-box-pack: center;
-  justify-content: center;
-  width: 100vw;
-}
+  /* body {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #fafafa;
+    display: -webkit-box;
+    display: flex;
+    height: 100%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+  } */
