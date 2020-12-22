@@ -15,6 +15,9 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { SwipeableDrawer } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import CartIcon from "../cart/cart.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   label: {
     // flexGrow: 1,
     cursor: "pointer",
-    color: "white",
+    color: "black",
     textDecoration: "none",
     marginLeft: "30px",
     marginRight: "30px",
@@ -85,8 +88,7 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
   },
 }));
-
-export default function Header({ currentUser }) {
+function Header({ currentUser, hidden }) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -147,7 +149,7 @@ export default function Header({ currentUser }) {
     <div className={classes.root}>
       <AppBar
         position="static"
-        style={{ backgroundColor: "#00003f", height: "80px" }}
+        style={{ backgroundColor: "#fff", height: "80px" }}
       >
         <Toolbar>
           <div>
@@ -193,9 +195,12 @@ export default function Header({ currentUser }) {
               <h6>Blog</h6>
             </div>
           </Link>
+
           {currentUser ? (
             <div>
-              <h6>Welcome {currentUser.displayName}</h6>
+              <h6 style={{ color: "black" }}>
+                Welcome {currentUser.displayName}
+              </h6>
               <div className={classes.label} onClick={() => auth.signOut()}>
                 <h6>Sign Out</h6>
               </div>
@@ -207,6 +212,7 @@ export default function Header({ currentUser }) {
               </div>
             </Link>
           )}
+          <CartIcon />
 
           {currentUser ? (
             <div>
@@ -224,6 +230,14 @@ export default function Header({ currentUser }) {
           ) : null}
         </Toolbar>
       </AppBar>
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 }
+
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
+});
+
+export default connect(mapStateToProps)(Header);

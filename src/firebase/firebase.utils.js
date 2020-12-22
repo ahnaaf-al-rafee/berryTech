@@ -62,4 +62,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const firebaseAnalytics = firebase.analytics();
+
 export default firebase;

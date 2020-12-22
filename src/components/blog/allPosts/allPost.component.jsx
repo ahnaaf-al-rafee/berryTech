@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import "./allPost.styles.css";
 
 import sanityClient from "../../../client";
-import Loading from "../../loading/loading"
+import Loading from "../../loading/loading";
+import { firebaseAnalytics } from "../../../firebase/firebase.utils";
 
 export default function AllPosts() {
   const [allPostsData, setAllPostsData] = useState(null);
 
   useEffect(() => {
+    firebaseAnalytics.logEvent("blogPage_visited");
     sanityClient
       .fetch(
         `*[_type == "post"]{

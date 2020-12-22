@@ -7,6 +7,7 @@ import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
 
 import Loading from "../../loading/loading";
+import { firebaseAnalytics } from "../../../firebase/firebase.utils";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -18,6 +19,7 @@ export default function SinglePost() {
   const { slug } = useParams();
 
   useEffect(() => {
+    firebaseAnalytics.logEvent("blogPost_visited");
     sanityClient
       .fetch(
         `*[slug.current == "${slug}"]{
